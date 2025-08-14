@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!DOCTYPE html>
+    <html lang="mn">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Store — Gift magic this holiday</title>
+        <style>
+          /* --- Base / Reset --- */
+          *,
+          *::before,
+          *::after {
+            box-sizing: border-box;
+          }
+          :root {
+            --bg: #fbfbfd;
+            --surface: #ffffff;
+            --ink: #1d1d1f;
+            --muted: #6e6e73;
+            --card: #f5f5f7;
+            --accent: #0071e3;
+            --radius: 20px;
+            --max: 1200px;
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+          }
+          html,
+          body {
+            height: 100%;
+          }
+          body {
+            margin: 0;
+            font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+              Oxygen, Ubuntu, Cantarell, "Helvetica Neue", Arial, system-ui,
+              sans-serif;
+            color: var(--ink);
+            background: var(--bg);
+          }
+          a {
+            color: inherit;
+            text-decoration: none;
+          }
+          img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            border-radius: 14px;
+          }
+          .wrap {
+            width: 100%;
+            max-width: var(--max);
+            margin-inline: auto;
+            padding: 0 16px;
+          } /* --- Top bar (like apple.com) --- */
+          .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            backdrop-filter: saturate(180%) blur(20px);
+            background: rgba(255, 255, 255, 0.7);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+          }
+          .topbar .inner {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            height: 44px;
+          }
+          .brand {
+            font-weight: 700;
+            letter-spacing: 0.2px;
+          }
+          .nav {
+            display: flex;
+            gap: 14px;
+            color: var(--muted);
+            font-size: 14px;
+            overflow: auto;
+          }
+          .nav a {
+            padding: 6px 8px;
+            border-radius: 10px;
+            white-space: nowrap;
+          }
+          .nav a:hover {
+            background: var(--card);
+            color: var(--ink);
+          }
+          .icons {
+            margin-left: auto;
+            display: flex;
+            gap: 10px;
+          }
+          .icon {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: var(--card);
+          }
+
+          /* --- Gradient stripe --- */
+          .stripe {
+            height: 6px;
+            background: linear-gradient(
+              90deg,
+              #ff8a8a,
+              #ffd08a,
+              #8affcf,
+              #8ad4ff,
+              #d18aff
+            );
+          }
+
+          /* --- Page heading --- */
+          header.store {
+            padding: 32px 0 8px;
+          }
+          header.store h1 {
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: -0.4px;
+          }
+          header.store .sub {
+            color: var(--muted);
+            font-size: 18px;
+          }
+          header.store .title {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+          }
+          .title .dot {
+            display: inline-block;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6ec6ff, #b77dff);
+            margin-right: 6px;
+          }
+          .title .wordstore {
+            font-weight: 700;
+            background: linear-gradient(135deg, #6ec6ff, #b77dff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+          }
+
+          /* --- Horizontal product icons --- */
+          .rail {
+            display: flex;
+            gap: 24px;
+            padding: 8px 0 24px;
+            overflow: auto;
+          }
+          .rail .picon {
+            text-align: center;
+            font-size: 12px;
+            color: var(--muted);
+          }
+          .rail .picon .circle {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--card);
+            display: grid;
+            place-items: center;
+            margin: 0 auto 8px;
+          }
+
+          /* --- Sections --- */
+          section {
+            padding: 22px 0 8px;
+          }
+          .section-title {
+            color: var(--muted);
+            font-weight: 600;
+            margin: 8px 0 14px;
+          }
+
+          /* --- Card grid --- */
+          .grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 16px;
+          }
+          .card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 16px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-height: 240px;
+            position: relative;
+            overflow: hidden;
+          }
+          .card::after {
+            content: "";
+            position: absolute;
+            inset: auto -40% -40% auto;
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(
+              closest-corner,
+              rgba(0, 0, 0, 0.04),
+              transparent 60%
+            );
+            transform: rotate(8deg);
+          }
+          .card .label {
+            font-size: 12px;
+            color: var(--muted);
+            font-weight: 600;
+            letter-spacing: 0.2px;
+          }
+          .card h3 {
+            margin: 0;
+            font-size: 20px;
+          }
+          .price {
+            color: var(--muted);
+            font-size: 14px;
+          }
+          .actions {
+            margin-top: auto;
+            display: flex;
+            gap: 8px;
+          }
+          .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            font-size: 14px;
+          }
+          .btn.primary {
+            background: var(--ink);
+            color: #fff;
+            border-color: transparent;
+          }
+          .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+          }
+
+          /* --- Spans for grid (desktop) --- */
+          .span-6 {
+            grid-column: span 6;
+          }
+          .span-3 {
+            grid-column: span 3;
+          }
+          .span-4 {
+            grid-column: span 4;
+          }
+          .span-12 {
+            grid-column: span 12;
+          }
+
+          /* --- Helpful mini cards (Only at Apple, Experience, Savings) --- */
+          .minicard {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: var(--shadow);
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+          }
+          .minicard .bubble {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--card);
+            display: grid;
+            place-items: center;
+            flex: 0 0 auto;
+          }
+
+          /* --- Footer --- */
+          footer {
+            padding: 24px 0 40px;
+            color: var(--muted);
+            font-size: 14px;
+          }
+          .links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 24px;
+          }
+          .links a {
+            color: inherit;
+          }
+
+          /* --- Responsive --- */
+          @media (max-width: 1024px) {
+            .span-6 {
+              grid-column: span 12;
+            }
+            .span-4 {
+              grid-column: span 6;
+            }
+            .span-3 {
+              grid-column: span 6;
+            }
+          }
+          @media (max-width: 640px) {
+            header.store h1 {
+              font-size: 28px;
+            }
+            .nav {
+              display: none;
+            }
+            .grid {
+              grid-template-columns: repeat(6, 1fr);
+            }
+            .span-4 {
+              grid-column: span 6;
+            }
+            .span-3 {
+              grid-column: span 6;
+            }
+          }
+
+          /* --- Utility images (simple SVG placeholders) --- */
+          .ph {
+            background: linear-gradient(180deg, #f1f2f6, #e9ecf3);
+            border-radius: 14px;
+            height: 160px;
+            display: grid;
+            place-items: center;
+          }
+          .ph svg {
+            width: 64px;
+            height: 64px;
+            opacity: 0.45;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="topbar">
+          <div class="wrap inner">
+            <div class="brand"></div>
+            <nav class="nav">
+              <a href="#">Store</a>
+              <a href="#">Mac</a>
+              <a href="#">iPad</a>
+              <a href="#">iPhone</a>
+              <a href="#">Watch</a>
+              <a href="#">Vision</a>
+              <a href="#">AirPods</a>
+              <a href="#">TV & Home</a>
+              <a href="#">Accessories</a>
+              <a href="#">Support</a>
+            </nav>
+            <div class="icons">
+              <div class="icon" title="Search">🔍</div>
+              <div class="icon" title="Bag">🛍️</div>
+            </div>
+          </div>
+        </div>
+        <div class="stripe"></div>
+        <header class="store wrap">
+          <div class="title">
+            <span class="wordstore">Store.</span>
+            <span class="sub">Gift magic this holiday.</span>
+          </div>
+          <div class="rail" aria-label="Product categories">
+            <!-- Small icon pills -->
+            <div class="picon">
+              <div class="1.png">💻</div>
+              Mac
+            </div>
+            <div class="picon">
+              <div class="circle">📱</div>
+              iPhone
+            </div>
+            <div class="picon">
+              <div class="circle">📟</div>
+              iPad
+            </div>
+            <div class="picon">
+              <div class="circle">⌚</div>
+              Apple Watch
+            </div>
+            <div class="picon">
+              <div class="circle">🕶️</div>
+              Apple Vision Pro
+            </div>
+            <div class="picon">
+              <div class="circle">🎧</div>
+              AirPods
+            </div>
+            <div class="picon">
+              <div class="circle">📺</div>
+              Apple TV
+            </div>
+            <div class="picon">
+              <div class="circle">🏠</div>
+              HomePod
+            </div>
+            <div class="picon">
+              <div class="circle">🎒</div>
+              Accessories
+            </div>
+            <div class="picon">
+              <div class="circle">🎁</div>
+              Gift Card
+            </div>
+          </div>
+        </header>
+        <main class="wrap">
+          <!-- The latest -->
+          <section>
+            <div class="section-title">
+              The latest. <strong>Let them unwrap wonders.</strong>
+            </div>
+            <div class="grid">
+              <article class="card span-6">
+                <span class="label">APPLE INTELLIGENCE</span>
+                <h3>iPhone 16 Pro</h3>
+                <p class="price">From $999 or $41.62/mo. for 24 mo.</p>
+                <div
+                  class="ph"
+                  role="img"
+                  aria-label="iPhone image placeholder"
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="6" y="2" width="12" height="20" rx="3"></rect>
+                  </svg>
+                </div>
+                <div class="actions">
+                  <a class="btn primary" href="#">Buy</a>
+                  <a class="btn" href="#">Learn more</a>
+                </div>
+              </article>
+              <article class="card span-3">
+                <span class="label">NEW</span>
+                <h3>Apple Watch Series 10</h3>
+                <p class="price">From $399.</p>
+                <div class="ph" aria-label="Watch image placeholder">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="7" y="5" width="10" height="14" rx="3"></rect>
+                  </svg>
+                </div>
+                <div class="actions">
+                  <a class="btn" href="#">Learn more</a>
+                </div>
+              </article>
+              <article class="card span-3">
+                <span class="label">APPLE INTELLIGENCE</span>
+                <h3>iPad mini</h3>
+                <p class="price">From $499.</p>
+                <div class="ph">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+                  </svg>
+                </div>
+                <div class="actions">
+                  <a class="btn" href="#">Learn more</a>
+                </div>
+              </article>
+              <article class="card span-6">
+                <span class="label">APPLE INTELLIGENCE</span>
+                <h3>MacBook Pro</h3>
+                <p class="price">From $1599.</p>
+                <div class="ph">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3 7h18v8H3zM2 17h20v1H2z" />
+                  </svg>
+                </div>
+                <div class="actions">
+                  <a class="btn primary" href="#">Buy</a>
+                  <a class="btn" href="#">Learn more</a>
+                </div>
+              </article>
+            </div>
+          </section>
+          <!-- Personalization -->
+          <section>
+            <div class="section-title">
+              Personalization. <strong>Let them unwrap wonders.</strong>
+            </div>
+            <div class="grid">
+              <article class="card span-3">
+                <h3>Make their gift one of a kind.</h3>
+                <p class="price">
+                  Free engraving on AirPods, iPad and Apple Pencil.
+                </p>
+                <div class="ph">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <circle cx="12" cy="12" r="6" />
+                  </svg>
+                </div>
+              </article>
+              <article class="card span-3">
+                <span class="label">FIVE COLORS</span>
+                <h3>AirPods Max — Purple</h3>
+                <p class="price">$549.00</p>
+                <div class="ph">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M6 14a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm12 0a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"
+                    />
+                  </svg>
+                </div>
+              </article>
+              <article class="card span-3">
+                <h3>AirPods Pro 2</h3>
+                <p class="price">$249.00</p>
+                <div class="ph">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="4" y="8" width="16" height="8" rx="4" />
+                  </svg>
+                </div>
+              </article>
+              <article class="card span-3">
+                <h3>AirPods with ANC</h3>
+                <p class="price">$179.00</p>
+                <div class="ph">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 7h3v10H8zM13 7h3v10h-3z" />
+                  </svg>
+                </div>
+              </article>
+              <article class="card span-3">
+                <h3>Apple Pencil Pro</h3>
+                <p class="price">$129.00</p>
+                <div class="ph">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="3" y="10" width="18" height="4" rx="2" />
+                  </svg>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- Holiday Picks -->
+          <section>
+            <div class="section-title">
+              Holiday Picks. <strong>Add more magic to the moment.</strong>
+            </div>
+            <div class="grid">
+              <article class="card span-3">
+                <h3>Surprise your favorites.</h3>
+                <p class="price">
+                  Choose from best‑sellers and fun accessories.
+                </p>
+                <div class="ph">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M4 7h16v12H4zM2 9h20v2H2z" />
+                  </svg>
+                </div>
+              </article>
+              <article class="card span-3">
+                <h3>MagSafe Silicone Case</h3>
+                <p class="price">$49.00</p>
+                <div class="ph">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="7" y="3" width="10" height="18" rx="3" />
+                  </svg>
+                </div>
+              </article>
+              <article class="card span-3">
+                <h3>HomePod mini — White</h3>
+                <p class="price">$99.00</p>
+                <div class="ph">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <circle cx="12" cy="12" r="8" />
+                  </svg>
+                </div>
+              </article>
+              <article class="card span-3">
+                <h3>Smart Folio for iPad Air</h3>
+                <p class="price">$79.00</p>
+                <div class="ph">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="4" y="4" width="16" height="16" rx="2" />
+                  </svg>
+                </div>
+              </article>
+              <article class="card span-3">
+                <h3>Beats Solo 4 — Slate Blue</h3>
+                <p class="price">$199.99</p>
+                <div class="ph">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M7 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm10 0a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"
+                    />
+                  </svg>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- Only at Apple / Experience / Savings -->
+          <section>
+            <div class="section-title">
+              Only at Apple. <strong>With every step of the holiday.</strong>
+            </div>
+            <div class="grid">
+              <div class="span-4 minicard">
+                <div class="bubble">🎁</div>
+                <div>
+                  <h4 style="margin: 0 0 4px">Get gifts in time</h4>
+                  <p class="price" style="margin: 0">
+                    Two‑hour delivery, free delivery or easy pickup.
+                  </p>
+                </div>
+              </div>
+              <div class="span-4 minicard">
+                <div class="bubble">⌚</div>
+                <div>
+                  <h4 style="margin: 0 0 4px">Customize your Mac or Watch</h4>
+                  <p class="price" style="margin: 0">Create your own style.</p>
+                </div>
+              </div>
+              <div class="span-4 minicard">
+                <div class="bubble">↩️</div>
+                <div>
+                  <h4 style="margin: 0 0 4px">Free extended returns</h4>
+                  <p class="price" style="margin: 0">
+                    Return items between now and 1/8.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="section-title">
+              The Apple Experience. <strong>Even more awe in store.</strong>
+            </div>
+            <div class="grid">
+              <div class="span-4 minicard">
+                <div class="bubble">🎵</div>
+                <div>
+                  <h4 style="margin: 0 0 4px">Apple Music free</h4>
+                  <p class="price" style="margin: 0">
+                    Get 3 months when you buy eligible devices.
+                  </p>
+                </div>
+              </div>
+              <div class="span-4 minicard">
+                <div class="bubble">📦</div>
+                <div>
+                  <h4 style="margin: 0 0 4px">3 months Apple TV+</h4>
+                  <p class="price" style="margin: 0">
+                    Buy an Apple device to qualify.
+                  </p>
+                </div>
+              </div>
+              <div class="span-4 minicard">
+                <div class="bubble">🧰</div>
+                <div>
+                  <h4 style="margin: 0 0 4px">One easy subscription</h4>
+                  <p class="price" style="margin: 0">
+                    Six Apple services in one.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="section-title">
+              Special Savings. <strong>Deals and education savings.</strong>
+            </div>
+            <div class="grid">
+              <div class="span-4 minicard">
+                <div class="bubble">📶</div>
+                <div>
+                  <h4 style="margin: 0 0 4px">Carrier deals</h4>
+                  <p class="price" style="margin: 0">
+                    Up to $1000 in credit with select carriers.
+                  </p>
+                </div>
+              </div>
+              <div class="span-4 minicard">
+                <div class="bubble">🎓</div>
+                <div>
+                  <h4 style="margin: 0 0 4px">Education</h4>
+                  <p class="price" style="margin: 0">
+                    Buy a new Mac or iPad with special pricing.
+                  </p>
+                </div>
+              </div>
+              <div class="span-4 minicard">
+                <div class="bubble">🛠️</div>
+                <div>
+                  <h4 style="margin: 0 0 4px">Refurbished</h4>
+                  <p class="price" style="margin: 0">
+                    Backed by a one‑year warranty.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+        <footer class="wrap">
+          <div class="links">
+            <a href="#">Order Status</a>
+            <a href="#">Shopping Help</a>
+            <a href="#">Returns</a>
+            <a href="#">Your Saves</a>
+            <a href="#">Privacy Policy</a>
+          </div>
+          <p style="margin-top: 12px">
+            © 2025 Demo layout inspired by Apple Store. For learning purposes
+            only.
+          </p>
+        </footer>
+      </body>
+    </html>
+  </head>
+  <body></body>
+</html>
