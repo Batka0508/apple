@@ -212,7 +212,13 @@
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
   padding: 20px;
 }
-
+.imgage p {
+  font-size: 30px;
+  margin-top: 330px;
+  font-weight: 600;
+  line-height: 44px;
+  align-items: center;
+}
 @keyframes rainbow {
   0% {
     background-position: 0% 50%;
